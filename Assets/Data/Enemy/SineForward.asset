@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SineForward
   m_EditorClassIdentifier: 
   hp: 3
+  fullHp: 3
   speed: 4
   damage: 2
   Score: 2

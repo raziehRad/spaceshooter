@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3974e51ab588b6e43b8235fe18c018aa, type: 3}
   m_Name: Straight
   m_EditorClassIdentifier: 
-  hp: -183
+  hp: 2
+  fullHp: 3
   speed: 5
   damage: 1
   Score: 1

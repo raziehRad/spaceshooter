@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI  hpTxt;
     [SerializeField]private TextMeshProUGUI  scoreTxt;
     [SerializeField]private TextMeshProUGUI  waveTxt;
+    [SerializeField]private Slider hpHealth;
     [SerializeField]private GameObject winPanel;
     [SerializeField]private GameObject losePanel;
     [SerializeField]private GameObject startPanel;  
@@ -24,6 +26,7 @@ int score;
     {
         if(value<0)value=0;
         hpTxt.text=value.ToString();
+        hpHealth.value=value;
     }
     public void SetScore(int value)
     {
@@ -32,7 +35,7 @@ int score;
     }
       public void Setkill(int value)//kill count
     {
-        waveTxt.text=value.ToString();
+        waveTxt.text=value+"/"+GameManager.Instance.KillCountToWin;
     }
     public void ActiveWinPanel()
     {

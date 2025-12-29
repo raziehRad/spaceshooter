@@ -6,19 +6,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]private HUDManager hudManager;
     [SerializeField]private EnemySpawner enemySpawner;
     [SerializeField]private PlayerController playerController;
-    [SerializeField]private int waveCountToWin=30;
+    [SerializeField]private int killCountToWin=30;
 
     public HUDManager HUDManager=>hudManager;
     public EnemySpawner EnemySpawner=>enemySpawner;
+    public int KillCountToWin=>killCountToWin;
     private void Start()
     {
         Instance=this;
         playerController.SetHealth();
     }
     //check if player killed enemy enough to win
-    public bool Checkkills(int waveCount)
+    public bool Checkkills(int killCount)
     {
-        if(waveCount==waveCountToWin)return true;
+        if(killCount==killCountToWin)return true;
         return false;
     }
     // pause the game and open win panel 

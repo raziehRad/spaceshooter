@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObjectPool<T> where T: Component{
     private Queue<T> pool=new Queue<T>();
-    private T prefab;
+    private T[] prefab;
     private Transform parent;
 
     public ObjectPool(T[] prefabs, int count,Transform parent){
@@ -19,7 +19,7 @@ public class ObjectPool<T> where T: Component{
     }
     public T Get(){
         
-        T obj= pool.Dequeue();
+        T obj=pool.Count>0? pool.Dequeue():null;
         if( obj.gameObject==null)return null;
         obj.gameObject.SetActive(true);
         return obj;

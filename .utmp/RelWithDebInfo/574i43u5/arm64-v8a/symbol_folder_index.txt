@@ -1,0 +1,1 @@
+C:\Users\Test\spaceShoooterTest\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\574i43u5\obj\arm64-v8a

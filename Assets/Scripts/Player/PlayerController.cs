@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
     {
         if(other.transform.CompareTag("Enemy"))
         {
-        EnemyBase enemy = other.transform.GetComponent<EnemyBase>();
+            EnemyBase enemy = other.transform.GetComponent<EnemyBase>();
         
-        if (enemy != null) 
-        {
-            playerHealth.TakeDamage( enemy.Data.damage);
-        }
+            if (enemy != null) 
+            {
+                 playerHealth.TakeDamage( enemy.Data.damage);
+            }
         }
     }
     

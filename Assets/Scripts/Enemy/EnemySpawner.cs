@@ -8,8 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Vector2 moveLimit;
     private ObjectPool<EnemyBase> enemyPool;
     private List<EnemyBase> activeEnemies =new List<EnemyBase>();
-    private bool isLastWave;
-    private int waveCount;
+    private int killCount;
     private  void Awake()
     {
         enemyPool= new  ObjectPool<EnemyBase>(enemyPrefab,poolSize,transform);
@@ -22,11 +21,10 @@ public class EnemySpawner : MonoBehaviour
     //spawn enemy repeatly
     private void Spawn()
     {
-        if(GameManager.Instance.CheckWave(waveCount))
+        if(GameManager.Instance.Checkkills(killCount))
          { 
-             return;
              CancelInvoke(nameof(Spawn));
-             isLastWave=true;
+             return;
          }
          var enemy= enemyPool.Get();
          if(enemy==null)return;
@@ -43,9 +41,9 @@ public class EnemySpawner : MonoBehaviour
     {
          activeEnemies.Remove(enemy);
          enemyPool.Return(enemy);
-         waveCount++;
-         if(GameManager.Instance.CheckWave(waveCount)) GameManager.Instance.WinAction();
-         GameManager.Instance.HUDManager.SetWave(waveCount);
+         killCount++;
+         if(GameManager.Instance.Checkkills(killCount)) GameManager.Instance.WinAction();
+         GameManager.Instance.HUDManager.Setkill(killCount);
     }
     // Update is called once per frame
 

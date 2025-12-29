@@ -28,7 +28,7 @@ int score;
         score+=value;
         scoreTxt.text=value.ToString();
     }
-      public void SetWave(int value)//kill count
+      public void Setkill(int value)//kill count
     {
         waveTxt.text=value.ToString();
     }

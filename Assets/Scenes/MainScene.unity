@@ -1944,7 +1944,7 @@ RectTransform:
   m_GameObject: {fileID: 710818851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.24, y: 1.24, z: 1.24}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1590538207}
@@ -1952,7 +1952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -98.13214, y: 96.532074}
+  m_AnchoredPosition: {x: -228, y: 198}
   m_SizeDelta: {x: 144.1359, y: 144.1359}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710818853
@@ -3693,9 +3693,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e64f140e240332418d0f6578f1fde1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 15
   limitX: {x: -10, y: 10}
-  limitZ: {x: -10, y: 10}
+  limitZ: {x: -10, y: 2}
   joystick: {fileID: 710818853}
 --- !u!114 &1475992367
 MonoBehaviour:

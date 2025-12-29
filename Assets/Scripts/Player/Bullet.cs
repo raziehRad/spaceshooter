@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
    private void OnTriggerEnter(Collider other)
    {
      if(other.gameObject.CompareTag("Enemy"))
-     {
-    
-          other.GetComponent<EnemyBase>().TakeDamage(1);
-          GameManager.Instance.HUDManager.SetScore(other.GetComponent<EnemyBase>().Data.Score);
+     { 
+          var enemy=  other.GetComponent<EnemyBase>();
+          enemy.TakeDamage(1);
+          GameManager.Instance.HUDManager.SetScore(enemy.Data.Score);
           pool.Return(this);
      }
    }

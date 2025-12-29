@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyStraight : EnemyBase
 {
 
-     [SerializeField] private float moveRange=3f;
-     [SerializeField] private float moveLimit;
+    [SerializeField] private float moveRange=3f;
+    [SerializeField] private float moveLimit;
 
     private float startX;
     private int direction=1;

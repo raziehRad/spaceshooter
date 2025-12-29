@@ -3,20 +3,22 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class HUDManager : MonoBehaviour
 {
-     [SerializeField]private TextMeshProUGUI  hpTxt;
-     [SerializeField]private TextMeshProUGUI  scoreTxt;
-     [SerializeField]private TextMeshProUGUI  waveTxt;
-     [SerializeField]private GameObject winPanel;
-     [SerializeField]private GameObject losePanel;
-     [SerializeField]private GameObject startPanel;  
+    [SerializeField]private TextMeshProUGUI  hpTxt;
+    [SerializeField]private TextMeshProUGUI  scoreTxt;
+    [SerializeField]private TextMeshProUGUI  waveTxt;
+    [SerializeField]private GameObject winPanel;
+    [SerializeField]private GameObject losePanel;
+    [SerializeField]private GameObject startPanel;  
 int score;
 
-    void Start(){
-         Pause(false);
+    void Start()
+    {
+        Pause(false);
     }
-    public void Pause(bool value){
+    public void Pause(bool value)
+    {
         value=!value;
-       Time.timeScale = value ? 0 : 1;
+        Time.timeScale = value ? 0 : 1;
     }
     public void SetHp(int value)
     {
@@ -32,23 +34,28 @@ int score;
     {
         waveTxt.text=value.ToString();
     }
-    public void ActiveWinPanel(){
-          Pause(false);
+    public void ActiveWinPanel()
+    {
+        Pause(false);
         winPanel.SetActive(true);
     }
-     public void ActiveLosePanel(){
-          Pause(false);
+     public void ActiveLosePanel()
+    {
+        Pause(false);
         losePanel.SetActive(true);
     }
-    public void RestartGame(){
+    public void RestartGame()
+    {
         SceneManager.LoadScene(0);
-              Pause(true);
+        Pause(true);
     }
-    public void Exit(){
+    public void Exit()
+    {
         Application.Quit();
     }
-    public void PlayGame(){
+    public void PlayGame()
+    {
         startPanel.SetActive(false);
-          Pause(true);
+        Pause(true);
     }
 }

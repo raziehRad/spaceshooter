@@ -6,7 +6,8 @@ public class Joystick: MonoBehaviour, IDragHandler,IPointerUpHandler,IPointerDow
     [SerializeField]private RectTransform handle;
     [SerializeField]private float radius=100f;
     public Vector2 Direction{get; private set;}
-    public void OnDrag(PointerEventData eventData){
+    public void OnDrag(PointerEventData eventData)
+    {
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform,eventData.position,eventData.pressEventCamera,
         out pos);
@@ -14,10 +15,12 @@ public class Joystick: MonoBehaviour, IDragHandler,IPointerUpHandler,IPointerDow
         handle.localPosition=pos;
         Direction=pos/radius;
     }
-    public void OnPointerDown(PointerEventData eventData){
+    public void OnPointerDown(PointerEventData eventData)
+    {
         OnDrag(eventData);
     }
-    public void OnPointerUp(PointerEventData eventData){
+    public void OnPointerUp(PointerEventData eventData)
+    {
         handle.localPosition=Vector2.zero;
         Direction=Vector2.zero;
     }

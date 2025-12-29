@@ -16,13 +16,14 @@ public class GameManager : MonoBehaviour
         playerController.SetHealth();
     }
     //check if player killed enemy enough to win
-    public bool Checkkills(int waveCount){
+    public bool Checkkills(int waveCount)
+    {
         if(waveCount==waveCountToWin)return true;
         return false;
     }
     // pause the game and open win panel 
-    public void WinAction(){
-
+    public void WinAction()
+    {
         hudManager.ActiveWinPanel();
     }
 }

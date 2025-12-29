@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class ObjectPool<T> where T: Component{
     private Queue<T> pool=new Queue<T>();
-    private T[] prefab;
+    private T[] prefabs;
     private Transform parent;
 
-    public ObjectPool(T[] prefabs, int count,Transform parent){
-        this.prefab=prefab;
+    public ObjectPool(T[] prefabs, int count,Transform parent)
+    {
+        this.prefabs=prefabs;
         this.parent=parent;
 
         for(int i=0;i<count;i++){
@@ -17,15 +18,16 @@ public class ObjectPool<T> where T: Component{
             pool.Enqueue(obj);
         }
     }
-    public T Get(){
-        
+    public T Get()
+    {
         T obj=pool.Count>0? pool.Dequeue():null;
         if( obj.gameObject==null)return null;
         obj.gameObject.SetActive(true);
         return obj;
     }
 
-    public void Return(T obj){
+    public void Return(T obj)
+    {
         obj.gameObject.SetActive(false);
         pool.Enqueue(obj);
     }

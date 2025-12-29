@@ -3955,6 +3955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudManager: {fileID: 1548079670}
   enemySpawner: {fileID: 1208447597}
+  playerController: {fileID: 1475992366}
   waveCountToWin: 30
 --- !u!1 &1590538206
 GameObject:

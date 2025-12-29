@@ -46,5 +46,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+    public void SetHealth()
+    {
+        playerHealth.SetHealth();
+    }
 }

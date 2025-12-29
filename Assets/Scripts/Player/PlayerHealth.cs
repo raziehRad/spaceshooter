@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -5,10 +6,11 @@ public class PlayerHealth : MonoBehaviour
    [SerializeField]private int maxHp=5;
    private int currentHp;
    private void Start()
-    {
+   {
       currentHp=maxHp;
-    }
+   }
 
+  
    public void TakeDamage(int value)
    {
       currentHp-=value;
@@ -16,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
       {
           GameManager.Instance.HUDManager.ActiveLosePanel();
       }
+      GameManager.Instance.HUDManager.SetHp(currentHp);
+   }
+   public void SetHealth()
+   {
       GameManager.Instance.HUDManager.SetHp(currentHp);
    }
 }

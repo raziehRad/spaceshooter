@@ -26,7 +26,7 @@ int score;
     public void SetScore(int value)
     {
         score+=value;
-        scoreTxt.text=value.ToString();
+        scoreTxt.text=score.ToString();
     }
       public void Setkill(int value)//kill count
     {

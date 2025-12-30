@@ -6,9 +6,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHp = 5;
     private int currentHp;
 
-    private void Start()
+    public void StartGame()
     {
         currentHp = maxHp;
+        SetHealth();
     }
 
 
@@ -16,12 +17,12 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHp -= value;
         if (currentHp <= 0)
-            GameManager.Instance.HUDManager.ActiveLosePanel();
-        GameManager.Instance.HUDManager.SetHp(currentHp);
+            GameEvents.OnPlayerDead?.Invoke();
+        SetHealth();
     }
 
     public void SetHealth()
     {
-        GameManager.Instance.HUDManager.SetHp(currentHp);
+        GameEvents.OnHealthChanged?.Invoke(currentHp);
     }
 }

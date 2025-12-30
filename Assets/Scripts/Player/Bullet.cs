@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private ObjectPool<Bullet> pool;
+    private ObjectPool<Bullet> pool;
 
     public void Init(ObjectPool<Bullet> pool)
     {
@@ -13,8 +13,6 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        if (transform.position.z > 10)
-            pool.Return(this);
     }
 
     //damage to enemy
@@ -23,8 +21,11 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             var enemy = other.GetComponent<EnemyBase>();
-            enemy.TakeDamage(1);
-            GameManager.Instance.HUDManager.SetScore(enemy.Data.Score);
+            enemy.TakeDamage(enemy.Data.damage);
+            pool.Return(this);
+        }
+        if (other.CompareTag("BackToPool"))
+        {
             pool.Return(this);
         }
     }

@@ -8,16 +8,29 @@ public class PlayerShooter : MonoBehaviour
 
     private float nextFireTime;
     private ObjectPool<Bullet> bulletPool;
+    private bool hasEnemy;
 
+    private void OnEnable()
+    {
+        GameEvents.OnEnemyPresenceChanged += OnEnemyPresenceChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnEnemyPresenceChanged -= OnEnemyPresenceChanged;
+    }
     private void Start()
     {
         bulletPool = new ObjectPool<Bullet>(bulletPrefab, 20, null);
     }
-
+    private void OnEnemyPresenceChanged(bool value)
+    {
+        hasEnemy = value;
+    }
     // Update is called once per frame
     private void Update()
     {
-        if (Time.time >= nextFireTime && GameManager.Instance.EnemySpawner.HasEnemy())
+        if (Time.time >= nextFireTime && hasEnemy)
         {
             Shoot();
             nextFireTime = Time.time + fireRate;

@@ -1,0 +1,10 @@
+# ninja log v5
+14	779	7887179814160603	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	5c3326739f4aae1a
+9	814	7887179814501730	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	830445887a4ff243
+19	833	7887179814698493	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	59c1a68ee47c2fc4
+29	848	7887179814818755	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8d828a6c17d098a8
+5	855	7887179814919287	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ac48926491183e4a
+35	889	7887179815290759	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	681857ce2dbb4605
+24	946	7887179815821571	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	7e60e7c4d0573df9
+1	970	7887179816076762	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	892b421a025efe3e
+970	1112	7887179817517345	C:/Users/Test/spaceShoooterTest/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/6v223c68/obj/armeabi-v7a/libgame.so	3acaeeac4a056c7e

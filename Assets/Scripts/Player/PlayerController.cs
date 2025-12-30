@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
+        Debug.Log("playerHealth");
+        playerHealth.StartGame();
     }
 
     private void Update()

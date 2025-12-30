@@ -1,33 +1,45 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    [SerializeField] private HUDManager hudManager;
-    [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private int killCountToWin = 30;
+    public static GameManager Instance { get; private set; }
+    public GameState CurrentState { get; private set; }
+    private int killCount;
+   
 
-    public HUDManager HUDManager => hudManager;
-    public EnemySpawner EnemySpawner => enemySpawner;
-    public int KillCountToWin => killCountToWin;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
-        Instance = this;
-        playerController.SetHealth();
+        Time.timeScale =0f;
     }
 
-    //check if player killed enemy enough to win
-    public bool Checkkills(int killCount)
+    private void Pause()
     {
-        if (killCount == killCountToWin) return true;
-        return false;
+        Time.timeScale = CurrentState == GameState.Playing ? 1f : 0f;
     }
+    public void SetState(GameState newState)
+    {
+        CurrentState = newState;
+        Pause();
+        GameEvents.OnGameStateChanged?.Invoke(newState);
+    }
+}
 
-    // pause the game and open win panel 
-    public void WinAction()
-    {
-        hudManager.ActiveWinPanel();
-    }
+public enum GameState
+{
+    Playing,
+    Paused,
+    Win,
+    Lose
 }

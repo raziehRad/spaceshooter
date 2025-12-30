@@ -12,53 +12,59 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject startPanel;
-    int score;
+    [SerializeField] private GameObject pausePanel;
 
-    void Start()
+    private void OnEnable()
     {
-        Pause(false);
+        GameEvents.OnScoreChanged += SetScore;
+        GameEvents.OnGameStateChanged += HandleGameState;
+        GameEvents.OnHealthChanged += SetHp;
+        GameEvents.OnKillCountChanged += Setkill;
+        GameEvents.OnPlayerDead += HandlePlayerDead;
     }
 
-    public void Pause(bool value)
+    private void OnDisable()
     {
-        value = !value;
-        Time.timeScale = value ? 0 : 1;
+        GameEvents.OnScoreChanged -= SetScore;
+        GameEvents.OnGameStateChanged -= HandleGameState;
+        GameEvents.OnHealthChanged -= SetHp;
+        GameEvents.OnKillCountChanged -= Setkill;
+        GameEvents.OnPlayerDead -= HandlePlayerDead;
     }
 
-    public void SetHp(int value)
+    private void HandleGameState(GameState state)
+    {
+        winPanel.SetActive(state == GameState.Win);
+        losePanel.SetActive(state == GameState.Lose);
+        pausePanel.SetActive(state == GameState.Paused);
+    }
+
+    private void SetHp(int value)
     {
         if (value < 0) value = 0;
         hpTxt.text = value.ToString();
         hpHealth.value = value;
     }
 
-    public void SetScore(int value)
+    private void SetScore(int value)
     {
-        score += value;
-        scoreTxt.text = score.ToString();
+        scoreTxt.text = value.ToString();
     }
 
-    public void Setkill(int value) //kill count
+    public void Setkill(int current, int target)
     {
-        waveTxt.text = value + "/" + GameManager.Instance.KillCountToWin;
-    }
-
-    public void ActiveWinPanel()
-    {
-        Pause(false);
-        winPanel.SetActive(true);
-    }
-
-    public void ActiveLosePanel()
-    {
-        Pause(false);
-        losePanel.SetActive(true);
+        waveTxt.text = $"{current}/{target}";
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
-        Pause(true);
+        GameManager.Instance.SetState(GameState.Playing);
+    }
+
+    private void HandlePlayerDead()
+    {
+        GameManager.Instance.SetState(GameState.Lose);
     }
 
     public void Exit()
@@ -69,6 +75,11 @@ public class HUDManager : MonoBehaviour
     public void PlayGame()
     {
         startPanel.SetActive(false);
-        Pause(true);
+        GameManager.Instance.SetState(GameState.Playing);
+    }
+
+    public void PauseGame()
+    {
+        GameManager.Instance.SetState(GameState.Paused);
     }
 }

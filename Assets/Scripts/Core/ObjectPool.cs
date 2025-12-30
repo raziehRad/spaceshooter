@@ -23,12 +23,19 @@ public class ObjectPool<T> where T : Component
 
     public T Get()
     {
-        T obj = pool.Count > 0 ? pool.Dequeue() : null;
+        T obj = pool.Count > 0 ? pool.Dequeue() : CreateNewObject();;
         if (obj.gameObject == null) return null;
         obj.gameObject.SetActive(true);
         return obj;
     }
-
+   private T CreateNewObject()
+    {
+        var chance = Random.Range(0, prefabs.Length);
+        var obj = GameObject.Instantiate(prefabs[chance], parent);
+        obj.gameObject.SetActive(false);
+        pool.Enqueue(obj);
+        return obj;
+    }
     public void Return(T obj)
     {
         obj.gameObject.SetActive(false);

@@ -22,17 +22,21 @@ public abstract class EnemyBase : MonoBehaviour
     public void TakeDamage(int value)
     {
         health -= value;
-        if (health <= 0) Die();
+        if (health <= 0)
+            Die();
     }
 
     private void Die()
     {
-        GameManager.Instance.EnemySpawner.OnEnemyKilled(this);
+        GameEvents.OnEnemyKilled?.Invoke(this);
         gameObject.SetActive(false);
     }
-
-    public void SetHealth()
+    
+    private void OnTriggerEnter(Collider other)
     {
-        health = Data.hp;
+        if (other.CompareTag("BackToPool"))
+        {
+            GameEvents.EnemyReturnToPool?.Invoke(this);
+        }
     }
 }

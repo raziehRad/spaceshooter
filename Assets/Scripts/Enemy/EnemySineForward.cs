@@ -23,8 +23,5 @@ public class EnemySineForward : EnemyBase
 
         transform.position = new Vector3(x, transform.position.y,
             transform.position.z - Data.speed * Time.deltaTime);
-
-        if (transform.position.z <= -10)
-            GameManager.Instance.EnemySpawner.ReturnToPool(this);
     }
 }
